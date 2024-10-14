@@ -1,0 +1,56 @@
+header {
+    background: #BEDDD7;
+    background: linear-gradient(135deg, #BEDDD7, #708F86);
+    height: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+footer {
+    background: #BEDDD7;
+    background: linear-gradient(135deg, #BEDDD7, #708F86);
+    height: 100px;
+}
+
+.Title {
+    font-size: 40px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 800;
+    margin-top: 17px;
+}
+
+.BlockTitle {
+    font-size: 25px;
+    font-weight: 800;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: white;
+    padding-top: 8%;
+}
+
+.EnterMain {
+    height: 764px;
+    background: #d2dbd9;
+    padding-top: 200px;
+}
+
+
+.GameMenu {
+    height: 764px;
+}
+
+.MenuColumns {
+    height: 762px;
+    border: 1px solid rgb(204, 204, 204);
+}
+
+.Avatar {
+    border: 1px solid;
+    height: 90px;
+    width: 90px;
+    margin-left: 26%;
+}
+
+.Nickname {
+    font-weight: 600;
+    color: rgb(255, 0, 0);
+}
