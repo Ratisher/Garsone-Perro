@@ -4,26 +4,26 @@ import { nicknameCheck, loginCheck, emailCheck, getUser } from '../Services/User
 import { useNavigate } from 'react-router-dom'
 import 'bootstrap'
 
-const EnterComponent = ({ onChange }) => {
+const EnterComponent = () => {
 
     const [nickname, setNickname] = useState('')
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
-    const level = 0;
+    const experience = 0;
 
     const navigator = useNavigate()
 
     function checkForData(e) {
         e.preventDefault();
 
-        const user = { nickname, login, password, email, level }
+        const user = { nickname, login, password, email, experience }
 
         Promise.all([nicknameCheck(nickname), loginCheck(login), emailCheck(email)])
             .then(([nicknameResponse, loginResponse, emailResponse]) => {
                 if (nicknameResponse.data == true && loginResponse.data == true && emailResponse.data == true) {
                     addUser(user).then((response) => {
-                        onChange(response.data.id);
+                        localStorage.setItem('userId', response.data.id);
                     })
                     navigator('/menu');
                 } else {
@@ -48,12 +48,12 @@ const EnterComponent = ({ onChange }) => {
         e.preventDefault();
       
         const forAuthorization = { login, password };
-        console.log(forAuthorization);
       
         try {
           const response = await getUser(forAuthorization);
           if (response.status != 404) {
-            onChange(response.data.id);
+            console.log(response.data);
+            localStorage.setItem('userId', response.data.id);
             navigator('/menu');
           }
         } catch (error) {

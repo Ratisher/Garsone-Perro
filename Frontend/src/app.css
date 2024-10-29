@@ -33,6 +33,31 @@ footer {
     padding-top: 200px;
 }
 
+.div-container {
+    display: flex;
+    justify-content: center;
+}
+
+.addFriend {
+    width: 45px;
+    height: 45px;
+}
+
+.addFriendDiv {
+    margin-left: 200px;
+    margin-top: 20px;
+}
+
+.title {
+    margin-left: 250px;
+}
+
+.image-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
 
 .GameMenu {
     height: 764px;

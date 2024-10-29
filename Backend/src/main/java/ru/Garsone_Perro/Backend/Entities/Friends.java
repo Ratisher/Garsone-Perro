@@ -1,4 +1,3 @@
-
 package ru.Garsone_Perro.Backend.Entities;
 
 import jakarta.persistence.Column;
@@ -14,22 +13,16 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "garsone-perro")
-public class User {
+@Table(name = "friends")
+public class Friends {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "login", unique = true)
-    private String login;
-    @Column(name = "password")
-    private String password;
-    @Column(name = "nickname", unique = true)
-    private String nickname;
-    @Column(name = "email", unique = true)
-    private String email;
-    @Column(name = "level")
-    private Integer level;
+    @Column(name = "user_Id")
+    private Long userId;
+    @Column(name = "friend_Id")
+    private Long friendId;
 }

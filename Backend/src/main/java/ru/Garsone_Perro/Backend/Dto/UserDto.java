@@ -16,5 +16,6 @@ public class UserDto {
     private String password;
     private String nickname;
     private String email;
-    private Integer level;
+    private Integer experience;
+    private String avatar;
 }
