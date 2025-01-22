@@ -45,27 +45,38 @@ public class UserRestController {
             return ResponseEntity.ok(user);
         }
         else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
 
+    @PostMapping("/data")
+    public ResponseEntity<List<UserDto>> getUsersByIds(@RequestBody List<Long> userIds) {
+        List<UserDto> users = crudServices.getUsersByIds(userIds);
+        if (!users.isEmpty()) {
+            return ResponseEntity.ok(users);
+        }
+        else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+    
     @GetMapping
     public ResponseEntity<List<UserDto>> getAllUsers() {
         List<UserDto> users = crudServices.getAllUsers();
         return ResponseEntity.ok(users);
     }
 
-    @GetMapping("/get-friends/{id}")
-    public ResponseEntity<List<UserDto>> getAllFriends(@PathVariable("id") Long id) {
-        List<UserDto> users = crudServices.getAllFriends(id);
-        if (users != null) {
-            return ResponseEntity.ok(users);
+    @GetMapping("/getUserByLogin/{login}")
+    public ResponseEntity<UserDto> getUserByLogin(@PathVariable("login") String login) {
+        UserDto user = crudServices.getUserByLogin(login);
+        if (user == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return ResponseEntity.ok(user);
         }
     }
-    
+     
     @GetMapping("/check-nickname/{nickname}")
     public boolean searchNickname(@PathVariable("nickname") String nickname) {
         boolean answer = crudServices.searchNickname(nickname);
@@ -100,7 +111,7 @@ public class UserRestController {
     public ResponseEntity<UserDto> getUser(@PathVariable("login") String login, @PathVariable("password") String password) {
         UserDto user = crudServices.getUser(login, password);
         if (user == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return ResponseEntity.ok(user);
         }
@@ -112,7 +123,7 @@ public class UserRestController {
         String avatarPath = crudServices.getAvatar(userId);
 
         if (avatarPath == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             byte[] imageBytes = Files.readAllBytes(Paths.get(avatarPath));
             return ResponseEntity.ok()
@@ -137,7 +148,7 @@ public class UserRestController {
     @PatchMapping("/update-avatar/{id}/avatar")
     public ResponseEntity<UserDto> updateAvatar(@RequestParam("avatar") MultipartFile avatar, @PathVariable("id") Long userId) throws IOException {
         if (avatar.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 
         String fileName = avatar.getOriginalFilename();

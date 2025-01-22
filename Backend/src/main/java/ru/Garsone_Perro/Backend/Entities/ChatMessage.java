@@ -3,8 +3,9 @@ package ru.Garsone_Perro.Backend.Entities;
 
 public class ChatMessage {
     private String content;
-    private String sender;
+    private Long senderId;
     private MessageType type;
+    private Long conversationId;
 
     public enum MessageType {
         CHAT, LEAVE, JOIN
@@ -18,12 +19,20 @@ public class ChatMessage {
         this.content = content;
     }
 
-    public String getSender() {
-        return sender;
+    public Long getSenderId() {
+        return senderId;
+    }
+    
+    public void setConversationId(Long conversationId) {
+        this.conversationId = conversationId;
+    }
+    
+    public Long getConverstionId() {
+        return conversationId;
     }
 
-    public void setSender(String sender) {
-        this.sender = sender;
+    public void setSenderId(Long senderId) {
+        this.senderId = senderId;
     }
 
     public MessageType getType() {
